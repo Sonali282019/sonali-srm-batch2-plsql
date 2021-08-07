@@ -1,0 +1,17 @@
+1. create table myemp(Eno int primary key, Ename varchar(30) not null, Depart_no int not null,Esal int);
+(a)alter table myemp add column (experience int not null);
+(b)update myemp set Esal=0 where Esal between 5000 and 10000;
+2.insert into empcommnull from select * from myemp where dep_name is null;
+3.(a)update myemp set dep_name='HR' where Ename like '%han';
+ (b)update myemp set dep_name='Sales' where Eno=4;
+ (c)update myemp set dep_name='Marketting' where Eno=5;
+4.1 CREATE TRIGGER Weekend
+  2       BEFORE INSERT OR UPDATE OR DELETE
+  3      on myemp
+  4     for each row
+  5       WHEN TRIM((TO_CHAR(SYSDATE(),'day')) IN (('SATURDAY','SUNDAY')))
+  6      DECLARE
+  7      BEGIN
+  8     RAISE_APPLICATION_ERROR(-20001,'Sorry Acess on weekend days is denied');
+  9*   END;
+5.
